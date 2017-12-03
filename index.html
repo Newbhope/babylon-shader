@@ -94,7 +94,7 @@
                 selectMesh(0);
 
                 // Compile
-                var shaderMaterial = new BABYLON.ShaderMaterial("shader", scene, "BABYLON_SHADER",
+                var shaderMaterial = new BABYLON.ShaderMaterial("shader", scene, "./BABYLON_SHADER",
                     {
                         attributes: ["position", "normal", "uv"],
                         uniforms: ["world", "worldView", "worldViewProjection", "view", "projection"]
