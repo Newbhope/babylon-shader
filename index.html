@@ -5,8 +5,12 @@
 
     <title>Babylon.js sample code</title>
     <!-- Babylon.js -->
-    <script src="http://www.babylonjs.com/hand.minified-1.2.js"></script>
-    <script src="http://www.babylonjs.com/babylon.js"></script>
+    <script src="https://www.babylonjs.com/hand.minified-1.2.js"></script>
+    <script src="https://preview.babylonjs.com/babylon.js"></script>
+    <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
+    <script src="https://preview.babylonjs.com/cannon.js"></script>
+    <script src="https://preview.babylonjs.com/oimo.js"></script>
+    
     <style>
         html, body {
             overflow: hidden;
@@ -90,10 +94,7 @@
                 selectMesh(0);
 
                 // Compile
-                var shaderMaterial = new BABYLON.ShaderMaterial("shader", scene, {
-                    vertex: "custom",
-                    fragment: "custom",
-                },
+                var shaderMaterial = new BABYLON.ShaderMaterial("shader", scene, "./BABYLON_SHADER",
                     {
                         attributes: ["position", "normal", "uv"],
                         uniforms: ["world", "worldView", "worldViewProjection", "view", "projection"]
