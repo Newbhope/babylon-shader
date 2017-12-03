@@ -8,6 +8,8 @@ if (BABYLON.Engine.isSupported()) {
         var meshes = [];
         var camera = new BABYLON.ArcRotateCamera("Camera", 0, Math.PI / 2, 12, BABYLON.Vector3.Zero(), scene);
 
+        scene.actionManager = new BABYLON.ActionManager(scene)
+
         camera.attachControl(canvas, false);
         camera.lowerRadiusLimit = 1;
         camera.minZ = 1.0;
@@ -19,12 +21,15 @@ if (BABYLON.Engine.isSupported()) {
                     meshes.push(BABYLON.Mesh.CreateSphere("mesh", 16, 5, scene));
                     break;
                 case 1:
-                    // Creating Torus
-                    meshes.push(BABYLON.Mesh.CreateTorus("mesh", 5, 1, 32, scene));
+                    var options = {
+                        width: 2,
+                        height: 2,
+                        depth: 2,
+                    };
+                    meshes.push(BABYLON.MeshBuilder.CreateBox("mesh", options, scene));
                     break;
                 case 2:
-                    // Creating Torus knot
-                    meshes.push(BABYLON.Mesh.CreateTorusKnot("mesh", 2, 0.5, 128, 64, 2, 3, scene));
+                    meshes.push(BABYLON.Mesh.CreateTorus("mesh", 5, 1, 32, scene));
                     break;
                 case 3:
                     meshes.push(BABYLON.Mesh.CreateGroundFromHeightMap("mesh", "heightMap.png", 8, 8, 100, 0, 3, scene, false));
@@ -32,7 +37,7 @@ if (BABYLON.Engine.isSupported()) {
             }
         };
 
-        selectMesh(0);
+        selectMesh(1);
 
         // Compile
         var shaderMaterial = new BABYLON.ShaderMaterial("shader", scene, "./BABYLON_SHADER", {
@@ -50,12 +55,28 @@ if (BABYLON.Engine.isSupported()) {
         shaderMaterial.setTexture("refSampler", refTexture);
         shaderMaterial.setFloat("time", 0);
         shaderMaterial.setVector3("cameraPosition", BABYLON.Vector3.Zero());
-        shaderMaterial.backFaceCulling = false;
+        shaderMaterial.backFaceCulling = true;
 
         for (var index = 0; index < meshes.length; index++) {
             var mesh = meshes[index];
             mesh.material = shaderMaterial;
         }
+
+        scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnKeyDownTrigger, function(evt) {
+            if (evt.sourceEvent.key == 'q') {
+                for (var index = 0; index < meshes.length; index++) {
+                    var mesh = meshes[index];
+                    mesh.dispose()
+                }
+            }
+            else {
+                selectMesh(parseInt(evt.sourceEvent.key) - 1)
+                for (var index = 0; index < meshes.length; index++) {
+                    var mesh = meshes[index];
+                    mesh.material = shaderMaterial;
+                }
+            }
+        }));
 
         return scene;
     }
@@ -75,4 +96,6 @@ if (BABYLON.Engine.isSupported()) {
     window.addEventListener("resize", function() {
         engine.resize();
     });
+
+
 }
