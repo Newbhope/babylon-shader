@@ -22,9 +22,9 @@ if (BABYLON.Engine.isSupported()) {
                     break;
                 case 1:
                     var options = {
-                        width: 2,
-                        height: 2,
-                        depth: 2
+                        width: 5.5,
+                        height: 5.5,
+                        depth: 5.5
                     };
                     meshes.push(BABYLON.MeshBuilder.CreateBox("mesh", options, scene));
                     break;
@@ -101,6 +101,8 @@ if (BABYLON.Engine.isSupported()) {
     window.addEventListener("resize", function() {
         engine.resize();
     });
+
+    // scene.debugLayer.show();
 
 
 }
