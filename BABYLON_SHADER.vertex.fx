@@ -1,4 +1,4 @@
-precision highp float;
+precision mediump float;
 
 // Attributes
 attribute vec3 position;
@@ -10,7 +10,7 @@ uniform mat4 worldViewProjection;
 // Varying
 varying vec2 vUV;
 
-void main(void) {
+void main() {
     gl_Position = worldViewProjection * vec4(position, 1.0);
 
     vUV = uv;

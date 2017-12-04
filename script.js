@@ -24,7 +24,7 @@ if (BABYLON.Engine.isSupported()) {
                     var options = {
                         width: 2,
                         height: 2,
-                        depth: 2,
+                        depth: 2
                     };
                     meshes.push(BABYLON.MeshBuilder.CreateBox("mesh", options, scene));
                     break;
@@ -45,14 +45,19 @@ if (BABYLON.Engine.isSupported()) {
             uniforms: ["world", "worldView", "worldViewProjection", "view", "projection"]
         });
 
-        var refTexture = new BABYLON.Texture("ref.jpg", scene);
-        refTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
-        refTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
-
+        // var refTexture = new BABYLON.Texture("ref.jpg", scene);
+        // refTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
+        // refTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
+        //
         var mainTexture = new BABYLON.Texture("amiga.jpg", scene);
 
+        var grassTexture = new BABYLON.Texture("grass.jpg", scene);
+        var groundTexture = new BABYLON.Texture("ground.jpg", scene);
+
+        shaderMaterial.setTexture("tex0", grassTexture);
+        shaderMaterial.setTexture("tex1", groundTexture);
+
         shaderMaterial.setTexture("textureSampler", mainTexture);
-        shaderMaterial.setTexture("refSampler", refTexture);
         shaderMaterial.setFloat("time", 0);
         shaderMaterial.setVector3("cameraPosition", BABYLON.Vector3.Zero());
         shaderMaterial.backFaceCulling = true;
