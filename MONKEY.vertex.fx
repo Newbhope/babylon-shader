@@ -16,9 +16,12 @@ varying vec2 vUV;
 void main(void) {
     vec3 v = position;
 
-    // vec3 monkeyColor = texture2D(monkeyTexture, vUV).rgb;
+    vec3 monkeyColor = texture2D(monkeyTexture, vUV).rgb;
 
-    // vUV.x += monkeyColor.r;
+    v.x += sin(2.0 * position.x + (time)) * monkeyColor.r;
+    v.y += sin(2.0 * position.y + (time)) * monkeyColor.r;
+    v.z += sin(2.0 * position.z + (time)) * monkeyColor.r;
+
     // v.y += monkeyColor.g;
     // v.z += monkeyColor.b;
 

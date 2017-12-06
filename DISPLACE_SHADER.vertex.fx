@@ -4,10 +4,10 @@ precision highp float;
 attribute vec3 position;
 attribute vec2 uv;
 
+
 // Uniforms
 uniform mat4 worldViewProjection;
 uniform float time;
-uniform sampler2D monkeyTexture;
 
 // Varying
 varying vec2 vUV;
@@ -16,9 +16,7 @@ varying vec2 vUV;
 void main(void) {
     vec3 v = position;
 
-    // vec3 monkeyColor = texture2D(monkeyTexture, vUV).rgb;
-
-    // vUV.x += monkeyColor.r;
+    v.z += 5.;
     // v.y += monkeyColor.g;
     // v.z += monkeyColor.b;
 
