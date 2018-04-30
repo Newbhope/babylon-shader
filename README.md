@@ -1,9 +1,6 @@
-Instructions to host locally:
+https://jpham8.github.io/babylon-shader/
 
-* python -m http.server
-* Go to http://127.0.0.1:8000/
-
-Controls:
+##Mesh Controls
 
 Clear meshes: Q
 
@@ -15,7 +12,7 @@ Two sphere meshes: 3 (One with displace shaders and another with regular I think
 
 Height map mesh: 4
 
-
+##Shader Controls
 
 Wave shaders: V //broken
 
@@ -25,3 +22,7 @@ Monkey: M
 
 Wave: W
 
+##Instructions to host locally
+
+* python -m http.server
+* Go to http://127.0.0.1:8000/
